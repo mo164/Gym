@@ -1,7 +1,8 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
-const globalErrorHandling = require("./utils/globalErrorHandling")
+const globalErrorHandling = require("./utils/globalErrorHandling");
+const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 app.use(morgan("dev"));
@@ -15,11 +16,12 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "uploads")));
 
-app.all("*", (req, res, next) => {
-    next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
-  });
-  ;
+// MOUNTING ROUTES
+app.use("/api/auth", authRoutes);
 
+app.all("*", (req, res, next) => {
+  next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
 // GLOBAL ERROR HANDLING MIDDLEWARE FOR EXPRESS
 app.use(globalErrorHandling);
 
