@@ -70,6 +70,10 @@ userSchema.pre("save", async function (next) {
   next()
 });
 
+userSchema.statics.compare = async function (realPassword,userPassword) {
+  return await bcrypt.compare(realPassword,userPassword)
+}
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
