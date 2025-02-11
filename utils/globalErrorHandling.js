@@ -34,7 +34,9 @@ const sendErrorForDev = (err, res) => {
 const sendErrorForProd = (err, res) => {
   return res.status(err.statusCode).json({
     status: err.status,
-    message: err.isOperational ? err.message : "Something went wrong!",
+    //message: err.isOperational ? err.message : "Something went wrong!",
+    message:  err.message 
+
   });
 };
 

@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const globalErrorHandling = require("./utils/globalErrorHandling");
+const appError = require('./utils/appError')
 const authRoutes = require("./routes/authRoutes");
 const app = express();
 

@@ -49,8 +49,7 @@ const userSchema = new mongoose.Schema({
         return value === this.password;
       },
       message: "Passwords are not the same",
-    },
-    select: false,
+    }
   },
   slug: {
     type: String,
@@ -58,21 +57,26 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// Slugify the name if it's in English
 userSchema.pre("save", function (next) {
-  this.slug = slugify(this.name);
+  if (validator.isAlpha(this.name, "en-US", { ignore: " " })) {
+    this.slug = slugify(this.name, { lower: true });
+  }
   next();
 });
 
+// Hash password before saving
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next;
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
-  next()
+  next();
 });
 
-userSchema.statics.compare = async function (realPassword,userPassword) {
-  return await bcrypt.compare(realPassword,userPassword)
-}
+// Password comparison function
+userSchema.methods.comparePasswords = async function (enteredPassword, hashedPassword) {
+  return await bcrypt.compare(enteredPassword, hashedPassword);
+};
 
 const User = mongoose.model("User", userSchema);
 
