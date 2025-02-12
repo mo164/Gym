@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const globalErrorHandling = require("./utils/globalErrorHandling");
 const appError = require('./utils/appError')
 const authRoutes = require("./routes/authRoutes");
+const calculateRoutes = require("./routes/calculateRotes")
 const app = express();
 
 app.use(morgan("dev"));
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "uploads")));
 
 // MOUNTING ROUTES
 app.use("/api/auth", authRoutes);
+app.use("/api/calculate",calculateRoutes)
 
 app.all("*", (req, res, next) => {
   next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
