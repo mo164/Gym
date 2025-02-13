@@ -11,22 +11,16 @@ const exerciseSchema = new mongoose.Schema({
     ref: 'MuscleGroup',
     required: true
   },
-  type: {
+  targetMuscle:String,
+  primaryMuscle:String,
+  secondaryMuscle:String,
+  instructions: [String],
+  sets:Number,
+  reps:Number,
+  category: {
     type: String,
-    enum: ['Compound', 'Isolation'], // مركب أو عزل
-    required: true
-  },
-  equipment: {
-    type: String,
-    enum: ['Dumbbell', 'Barbell', 'Machine', 'Bodyweight', 'Cable', 'Other'],
-    required: true
-  },
-  difficulty: {
-    type: String,
-    enum: ['Beginner', 'Intermediate', 'Advanced'],
-    required: true
-  },
-  instructions: [String] // خطوات أداء التمرين
+    enum: ['Explore by Muscle', 'Explore by System', 'Cardio'], 
+  }
 });
 
 module.exports = mongoose.model('Exercise', exerciseSchema);

@@ -6,6 +6,7 @@ const muscleGroupSchema = new mongoose.Schema({
     unique: true,
   },
   description: String,
+  image: String
 });
 
 module.exports = mongoose.model("MuscleGroup", muscleGroupSchema);
