@@ -6,6 +6,7 @@ const appError = require('./utils/appError')
 const authRoutes = require("./routes/authRoutes");
 const calculateRoutes = require("./routes/calculateRotes")
 const muscleRoutes = require("./routes/muscleRoutes");
+const exerciseRoutes = require("./routes/exercisesRoutes")
 const app = express();
 
 app.use(morgan("dev"));
@@ -25,7 +26,7 @@ app.use('/uploads', express.static('uploads'));
 app.use("/api/auth", authRoutes);
 app.use("/api/calculate",calculateRoutes)
 app.use("/api/muscle",muscleRoutes);
-
+app.use("/api/exercise",exerciseRoutes);
 app.all("*", (req, res, next) => {
   next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
 });

@@ -1,6 +1,7 @@
 const express = require("express");
 const muscleGroup = require("../controllers/muscleGroupController");
-const router = express.Router();
+const exercisesController = require("../controllers/exercisesController");
+const router = express.Router({ mergeParams: true });
 router.route("/").get(muscleGroup.getAllMuscles);
 router
   .route("/:id")
@@ -11,5 +12,10 @@ router
     muscleGroup.updateSpecificMuscle
   );
 router.route("/addMuscle").post(muscleGroup.addMuscleGroup);
+
+// {{URL}}/api/musscles/674624ec579e0e05293146f5/exercises
+router
+  .route("/:muscleId/exercises")
+  .get(exercisesController.getAllExercisesOnSpecificMuscle);
 
 module.exports = router;

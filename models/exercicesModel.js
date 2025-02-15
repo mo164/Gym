@@ -9,18 +9,30 @@ const exerciseSchema = new mongoose.Schema({
   muscleGroup: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'MuscleGroup',
-    required: true
+    required: false
   },
-  targetMuscle:String,
-  primaryMuscle:String,
-  secondaryMuscle:String,
+  targetMuscle:[String],
+  primaryMuscle:[String],
+  secondaryMuscle:[String],
   instructions: [String],
   sets:Number,
   reps:Number,
   category: {
     type: String,
     enum: ['Explore by Muscle', 'Explore by System', 'Cardio'], 
+  },
+  top10:{
+    type:Boolean,
+    default: false,
   }
 });
+
+exerciseSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: "muscleGroup",
+    select: "name _id ",
+  });
+  next();
+})
 
 module.exports = mongoose.model('Exercise', exerciseSchema);
