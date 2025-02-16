@@ -11,7 +11,8 @@ router
   .route("/top_10")
   .post(exercisesController.addTop10)
   .get(exercisesController.getTop10);
-  
+
+//router.route("/:day").get(exercisesController.exploreBySystem);
 router.route("/:id").get(exercisesController.getSpecificExercise);
 
 //router.route('/Explore by Muscle').get(exercisesController.exploreByMuscle)

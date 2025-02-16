@@ -12,6 +12,8 @@ exports.addExercises = asyncHandler(async (req, res, next) => {
     sets: req.body.sets,
     reps: req.body.reps,
     category: req.body.category,
+    day: req.body.day,
+    system: req.body.system
   });
   res.status(201).json({
     message: "Success",
@@ -61,17 +63,17 @@ exports.addTop10 = asyncHandler(async (req, res) => {
     top10: req.body.top10,
   });
   res.status(201).json({
-    message: 'created successfully',
-    top10
-  })
+    message: "created successfully",
+    top10,
+  });
 });
 
 exports.getTop10 = asyncHandler(async (req, res) => {
-  const top10 = await Exercise.find({top10:true});
+  const top10 = await Exercise.find({ top10: true });
 
   res.status(200).json({
-    message: 'success',
+    message: "success",
     result: top10.length,
-    top10
-  })
-})
+    top10,
+  });
+});

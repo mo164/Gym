@@ -24,7 +24,9 @@ const exerciseSchema = new mongoose.Schema({
   top10:{
     type:Boolean,
     default: false,
-  }
+  },
+  day:String,
+  system:String,
 });
 
 exerciseSchema.pre(/^find/, function(next) {
