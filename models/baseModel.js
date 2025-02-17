@@ -7,7 +7,9 @@ const BaseSchema = new mongoose.Schema({
   fat: Number,
 });
 
-const BaseModel = mongoose.model("Base", BaseSchema);
 const Protien = mongoose.model("Protien", BaseSchema);
 const Carb = mongoose.model("Carb", BaseSchema);
-module.exports = { Protien, Carb };
+const healthy = mongoose.model("healthy", BaseSchema);
+const diary = mongoose.model("diary", BaseSchema);
+
+module.exports = { Protien, Carb , healthy ,diary};
