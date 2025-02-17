@@ -55,4 +55,3 @@ exports.calculateMacros = (calories) => {
   };
   
 
-//exports.bmr = calculateBMR(weight,height,age, gender);

@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const utils = require("./../utils/utils");
+const utils = require("./../utils/calculateFunctions");
 exports.Calculate = asyncHandler(async (req, res) => {
   const userData = {
     gender: req.body.gender,
