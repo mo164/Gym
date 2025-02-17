@@ -10,6 +10,7 @@ const exerciseRoutes = require("./routes/exercisesRoutes");
 const trainingSystemRoutes = require("./routes/trainingSystemRoutes");
 const mainProtienRoutes = require("./routes/mainProtienRoutes.js");
 const mainCarbRoutes = require("./routes/mainCarbRoutes.js");
+const mainHealthyRoutes = require("./routes/healthyRoutes.js")
 const app = express();
 
 app.use(morgan("dev"));
@@ -32,6 +33,7 @@ app.use("/api/exercise", exerciseRoutes);
 app.use("/api/trainingSystem", trainingSystemRoutes);
 app.use("/api/protiens", mainProtienRoutes);
 app.use("/api/carb",mainCarbRoutes)
+app.use("/api/healthy",mainHealthyRoutes)
 app.all("*", (req, res, next) => {
   next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
