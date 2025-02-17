@@ -31,7 +31,7 @@ app.use("/api/muscle", muscleRoutes);
 app.use("/api/exercise", exerciseRoutes);
 app.use("/api/trainingSystem", trainingSystemRoutes);
 app.use("/api/protiens", mainProtienRoutes);
-app.use("/api/mainCarbRoutes",mainCarbRoutes)
+app.use("/api/carb",mainCarbRoutes)
 app.all("*", (req, res, next) => {
   next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
