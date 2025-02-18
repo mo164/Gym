@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
 const nutraionProgramSchema = new mongoose.Schema({
-  name: String,
   meals: [
     {
-      names: String,
+      name: String,
       items: [
         {
           name: String,
@@ -19,6 +18,7 @@ const nutraionProgramSchema = new mongoose.Schema({
   ],
 });
 
-const Nutraion = mongoose.model("Nutraion", nutraionProgramSchema);
+const Bulking = mongoose.model("Bulking", nutraionProgramSchema);
+const Cutting = mongoose.model("Cutting", nutraionProgramSchema);
 
-module.exports = Nutraion;
+module.exports ={Bulking,Cutting};
