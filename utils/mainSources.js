@@ -22,7 +22,7 @@ exports.getAll = (Model) =>
   });
 
 exports.getById = (Model) =>
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res,next) => {
     const docs = await Model.findById(req.params.id);
     if (!docs) {
       return next(new appErorr("no document found with this id", 404));

@@ -7,9 +7,6 @@ router
   .post(bulkController.createNutrationProgram)
   .get(bulkController.getAllNutrationPrograms);
 
-router
-  .route("/:id")
-  .get(bulkController.getSpecificNutrationProgram)
-  .patch(bulkController.updateNutrationProgram)
-  .delete(bulkController.deleteNutrationProgram);
+router.route("/gettotal").get(bulkController.getTotal)
+
 module.exports = router;
