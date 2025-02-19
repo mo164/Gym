@@ -48,9 +48,9 @@ exports.update = (Model) =>
   });
 
 exports.delete = (Model) =>
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res,next) => {
     const docs = await Model.findByIdAndDelete(req.params.id);
-    if (!protien) {
+    if (!docs) {
       return next(new appErorr("no document found with this id", 404));
     }
     res.status(200).json({

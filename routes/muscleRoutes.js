@@ -7,13 +7,19 @@ router
   .route("/:id")
   .get(muscleGroup.getSpecificMuscle)
   .patch(
-    muscleGroup.uploadBrandImage,
+    muscleGroup.uploadMuscleImage,
     muscleGroup.resizeImage,
     muscleGroup.updateSpecificMuscle
+  )
+  .delete(muscleGroup.deleteSpecificMuscle);
+router
+  .route("/addMuscle")
+  .post(
+    muscleGroup.uploadMuscleImage,
+    muscleGroup.resizeImage,
+    muscleGroup.addMuscleGroup
   );
-router.route("/addMuscle").post(muscleGroup.addMuscleGroup);
 
-// {{URL}}/api/musscles/674624ec579e0e05293146f5/exercises
 router
   .route("/:muscleId/exercises")
   .get(exercisesController.getAllExercisesOnSpecificMuscle);

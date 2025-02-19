@@ -3,56 +3,30 @@ const { v4: uuidv4 } = require("uuid");
 const sharp = require("sharp");
 const uploadImage = require("./../utils/uploadImages.js");
 const muscleGroup = require("../models/muscleGroupModel.js");
+const handlerFunction = require("../utils/mainSources");
 
-exports.addMuscleGroup = asyncHandler(async (req, res) => {
-  const add = await muscleGroup.create({
-    name: req.body.name,
-  });
-  res.status(201).json({
-    message: "created successfully",
-    add,
-  });
-});
+exports.addMuscleGroup = handlerFunction.create(muscleGroup);
 
-exports.getAllMuscles = asyncHandler(async (req, res) => {
-  const allMuscles = await muscleGroup.find({});
-  res.status(200).json({
-    message: " all muscles found",
-    result: allMuscles.length,
-    allMuscles,
-  });
-});
+exports.getAllMuscles = handlerFunction.getAll(muscleGroup);
 
-exports.getSpecificMuscle = asyncHandler(async (req, res) => {
-  const muscle = req.params.id;
-  const getMuscle = await muscleGroup.findById(muscle);
-  res.status(200).json({
-    message: "Muscle found successfully",
-    getMuscle,
-  });
-});
+exports.getSpecificMuscle = handlerFunction.getById(muscleGroup);
 
-exports.uploadBrandImage = uploadImage.uploadSingleImage("image");
+exports.updateSpecificMuscle = handlerFunction.update(muscleGroup);
+
+exports.deleteSpecificMuscle = handlerFunction.delete(muscleGroup);
+
+exports.uploadMuscleImage = uploadImage.uploadSingleImage("image");
+
 exports.resizeImage = asyncHandler(async (req, res, next) => {
-  const filename = `muscle-${uuidv4()}-${Date.now()}.jpeg`;
+  if (!req.file) {
+    return next(new Error("No file uploaded"));
+  }
 
-  await sharp(req.file.buffer)
-    .resize(100, 148)
-    .toFormat("jpeg")
-    .jpeg({ quality: 95 })
-    .toFile(`uploads/muscles/${filename}`);
-
-  // Save image into our db
-  req.body.image = `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/muscles/${filename}`;
+  const imageUrl = req.file.path.replace(
+    "/upload/",
+    "/upload/w_100,h_148,c_crop/"
+  );
+  req.body.image = imageUrl;
 
   next();
-});
-exports.updateSpecificMuscle = asyncHandler(async (req, res, next) => {
-  const user = await muscleGroup.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  res.status(200).json({
-    message: "update successfully",
-    user,
-  });
 });

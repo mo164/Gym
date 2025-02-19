@@ -10,10 +10,5 @@ const muscleGroupSchema = new mongoose.Schema({
   image: String,
 });
 
-// muscleGroupSchema.pre(/^find/, function(next){
-//   this.populate({ path: 'exercises', select: 'name' });
-//   next();
-// });
-
 const MuscleGroup = mongoose.model("MuscleGroup", muscleGroupSchema);
 module.exports = MuscleGroup;
