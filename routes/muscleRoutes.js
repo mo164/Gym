@@ -7,7 +7,7 @@ router
   .route("/:id")
   .get(muscleGroup.getSpecificMuscle)
   .patch(
-    muscleGroup.uploadMuscleImage,
+    muscleGroup.uploadMusclemedia,
     muscleGroup.resizeImage,
     muscleGroup.updateSpecificMuscle
   )
@@ -15,7 +15,7 @@ router
 router
   .route("/addMuscle")
   .post(
-    muscleGroup.uploadMuscleImage,
+    muscleGroup.uploadMusclemedia,
     muscleGroup.resizeImage,
     muscleGroup.addMuscleGroup
   );

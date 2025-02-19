@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const uploadImage = require("./../utils/uploadImages.js");
+const uploadMedia = require("./../utils/uploadMedia");
 const muscleGroup = require("../models/muscleGroupModel.js");
 const handlerFunction = require("../utils/mainSources");
 
@@ -13,18 +13,25 @@ exports.updateSpecificMuscle = handlerFunction.update(muscleGroup);
 
 exports.deleteSpecificMuscle = handlerFunction.delete(muscleGroup);
 
-exports.uploadMuscleImage = uploadImage.uploadSingleImage("image");
+exports.uploadMusclemedia = uploadMedia.uploadMedia;
 
 exports.resizeImage = asyncHandler(async (req, res, next) => {
-  if (!req.file) {
-    return next(new Error("No file uploaded"));
+  if (!req.files || (!req.files.image && !req.files.video)) {
+    return next(new Error("Please upload at least an image or a video"));
   }
 
-  const imageUrl = req.file.path.replace(
-    "/upload/",
-    "/upload/w_100,h_148,c_crop/"
-  );
-  req.body.image = imageUrl;
+  const imageFile = req.files.image?.[0]?.path;
+  const videoFile = req.files.video?.[0]?.path;
+  if (imageFile) {
+    req.body.image = imageFile.replace(
+      "/upload/",
+      "/upload/w_100,h_148,c_crop/"
+    );
+  }
+
+  if (videoFile) {
+    req.body.video = videoFile;
+  }
 
   next();
 });

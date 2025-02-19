@@ -21,9 +21,14 @@ exports.getAll = (Model) =>
     });
   });
 
-exports.getById = (Model) =>
+exports.getById = (Model,options) =>
   asyncHandler(async (req, res,next) => {
-    const docs = await Model.findById(req.params.id);
+    const {id} = req.params
+    let query = Model.findById(id)
+    if(options){
+     query =  query.populate(options)
+    }
+      const docs = await query
     if (!docs) {
       return next(new appErorr("no document found with this id", 404));
     }

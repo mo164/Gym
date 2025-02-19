@@ -4,7 +4,11 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route("/")
-  .post(exercisesController.addExercises)
+  .post(
+    exercisesController.uploadExerciseMedia,
+    exercisesController.resizeImage,
+    exercisesController.addExercises
+  )
   .get(exercisesController.getAllExercises);
 
 router
@@ -12,8 +16,14 @@ router
   .post(exercisesController.addTop10)
   .get(exercisesController.getTop10);
 
-//router.route("/:day").get(exercisesController.exploreBySystem);
-router.route("/:id").get(exercisesController.getSpecificExercise);
+router
+  .route("/:id")
+  .get(exercisesController.getSpecificExercise)
+  .patch(
+    exercisesController.uploadExerciseMedia,
+    exercisesController.resizeImage,
+    exercisesController.updateExercise
+  )
+  .delete(exercisesController.deleteExercise);
 
-//router.route('/Explore by Muscle').get(exercisesController.exploreByMuscle)
 module.exports = router;
