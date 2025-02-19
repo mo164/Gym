@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const supplementSchema = new mongoose.Schema({
   name: String,
-  photo: String,
+  image: String,
   Definition: String,
   Benefits: String,
   dailyRequirement: String,

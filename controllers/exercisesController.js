@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Exercise = require("./../models/exercicesModel");
 const handlerFunction = require("./../utils/mainSources");
 const uploadMedia = require("../utils/uploadMedia");
+
 exports.addExercises = asyncHandler(async (req, res, next) => {
   const exercise = await Exercise.create({
     name: req.body.name,
