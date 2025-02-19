@@ -1,16 +1,16 @@
 const asyncHandler = require("express-async-handler");
 const { Bulking } = require("../models/nutrationProgramsModel");
-const mainSources = require("../utils/mainSources");
+const handlerFunction = require("../utils/mainSources");
 
-exports.createNutrationProgram = mainSources.create(Bulking);
+exports.createNutrationProgram = handlerFunction.create(Bulking);
 
-exports.getAllNutrationPrograms = mainSources.getAll(Bulking);
+exports.getAllNutrationPrograms = handlerFunction.getAll(Bulking);
 
-exports.updateNutrationProgram = mainSources.update(Bulking);
+exports.updateNutrationProgram = handlerFunction.update(Bulking);
 
-exports.getSpecificNutrationProgram = mainSources.getById(Bulking);
+exports.getSpecificNutrationProgram = handlerFunction.getById(Bulking);
 
-exports.deleteNutrationProgram = mainSources.delete(Bulking);
+exports.deleteNutrationProgram = handlerFunction.delete(Bulking);
 
 exports.getTotal = asyncHandler(async (req, res,next) => {
   const result = await Bulking.aggregate([

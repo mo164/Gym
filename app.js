@@ -14,6 +14,7 @@ const mainHealthyRoutes = require("./routes/healthyRoutes.js");
 const mainDiaryRoutes = require("./routes/diaryRoutes.js");
 const bulkRoutes = require("./routes/bulkRoutes.js");
 const cuttingRoutes = require("./routes/cuttingRoutes.js");
+const supplementRoutes = require("./routes/supplementRoutes.js");
 const app = express();
 
 app.use(morgan("dev"));
@@ -39,6 +40,7 @@ app.use("/api/healthy", mainHealthyRoutes);
 app.use("/api/diary", mainDiaryRoutes);
 app.use("/api/bulk", bulkRoutes);
 app.use("/api/cutting", cuttingRoutes);
+app.use("/api/supplement", supplementRoutes);
 app.all("*", (req, res, next) => {
   next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
