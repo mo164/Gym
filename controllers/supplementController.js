@@ -23,12 +23,8 @@ exports.resizeImage = asyncHandler(async (req, res, next) => {
   const imageFile = req.files.image?.[0]?.path;
   const videoFile = req.files.video?.[0]?.path;
   if (imageFile) {
-    req.body.image = imageFile.replace(
-      "/upload/",
-      "/upload/w_100,h_148,c_crop/"
-    );
+     req.body.image = imageFile
   }
-
   if (videoFile) {
     req.body.video = videoFile;
   }

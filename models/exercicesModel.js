@@ -10,7 +10,7 @@ const exerciseSchema = new mongoose.Schema({
   muscleGroup: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "MuscleGroup",
-    required: false,
+    required: true,
   },
   mistakes: [String],
   targetMuscle: [String],

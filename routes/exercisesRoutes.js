@@ -19,11 +19,17 @@ router
 router
   .route("/:id")
   .get(exercisesController.getSpecificExercise)
+  .patch(exercisesController.updateExercise)
+  .delete(exercisesController.deleteExercise);
+
+  router
   .patch(
+    "/updatemedia/:id",  
     exercisesController.uploadExerciseMedia,
     exercisesController.resizeImage,
     exercisesController.updateExercise
-  )
-  .delete(exercisesController.deleteExercise);
+  );
 
+
+  
 module.exports = router;

@@ -14,10 +14,13 @@ router
 router
   .route("/:id")
   .get(supplementController.getSpecificSupplement)
-  .patch(
-    supplementController.uploadSupplementMedia,
-    supplementController.resizeImage,
-    supplementController.updateSupplement
-  )
+  .patch(supplementController.updateSupplement)
   .delete(supplementController.deleteSupplement);
+
+router.patch(
+  "/updatemedia/:id",
+  supplementController.uploadSupplementMedia,
+  supplementController.resizeImage,
+  supplementController.updateSupplement
+);
 module.exports = router;
