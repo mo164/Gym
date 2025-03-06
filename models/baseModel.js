@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const BaseSchema = new mongoose.Schema({
   name: String,
   sthermal: Number,
-  protien: Number,
-  carp: Number,
+  protein: Number,
+  carb: Number,
   fat: Number,
 });
 
