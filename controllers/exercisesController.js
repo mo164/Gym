@@ -18,6 +18,7 @@ exports.addExercises = asyncHandler(async (req, res, next) => {
     system: req.body.system,
     image: req.body.image,
     video: req.body.video,
+    mistakes:req.body.mistakes
   });
   res.status(201).json({
     message: "Success",
