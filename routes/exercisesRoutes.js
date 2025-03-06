@@ -5,8 +5,6 @@ const router = express.Router({ mergeParams: true });
 router
   .route("/")
   .post(
-    exercisesController.uploadExerciseMedia,
-    exercisesController.resizeImage,
     exercisesController.addExercises
   )
   .get(exercisesController.getAllExercises);
