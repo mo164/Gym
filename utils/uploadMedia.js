@@ -13,12 +13,19 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
+    const isVideo = file.mimetype.startsWith("video");
+
     return {
       folder: "uploads",
-      resource_type: file.mimetype.startsWith("video") ? "video" : "image",
-      allowed_formats: file.mimetype.startsWith("video")
-        ? ["mp4", "avi", "mov"]
-        : ["jpg", "png", "jpeg"],
+      resource_type: isVideo ? "video" : "image",
+      allowed_formats: isVideo ? ["mp4"] : ["jpg", "png", "jpeg"],
+      transformation: isVideo
+        ? [
+            { width: 640, height: 360, crop: "limit" },
+            { quality: "auto:low" },
+            { format: "mp4" },
+          ]
+        : [{ quality: "auto:low" }],
     };
   },
 });
