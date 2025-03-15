@@ -42,3 +42,5 @@ exports.uploadMedia = multer({ storage, fileFilter: multerFilter }).fields([
   { name: "image", maxCount: 1 },
   { name: "video", maxCount: 1 },
 ]);
+
+
