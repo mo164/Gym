@@ -18,7 +18,7 @@ const exerciseSchema = new mongoose.Schema({
   secondaryMuscle: [String],
   instructions: [String],
   sets: Number,
-  reps: Number,
+  reps: String,
   category: {
     type: String,
     enum: ["Explore by Muscle", "Explore by System", "Cardio"],
