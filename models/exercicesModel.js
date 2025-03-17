@@ -34,7 +34,7 @@ const exerciseSchema = new mongoose.Schema({
 exerciseSchema.pre(/^find/, function (next) {
   this.populate({
     path: "muscleGroup",
-    //select: "name _id ",
+    select: "name _id  image",
   });
   next();
 });

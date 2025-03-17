@@ -11,7 +11,6 @@ router
 
 router
   .route("/top_10")
-  .post(exercisesController.addTop10)
   .get(exercisesController.getTop10);
 
 router
