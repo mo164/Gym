@@ -18,7 +18,8 @@ trainingSchema.pre(/^find/, function (next) {
   });
   next();
 });
+const BroSplit = mongoose.model("BroSplit", trainingSchema);
+const BushPullLegs = mongoose.model("BushPullLegs", trainingSchema);
+const ArnoldSplit = mongoose.model("ArnoldSplit", trainingSchema);
 
-module.exports = mongoose.model("BroSplit", trainingSchema);
-module.exports = mongoose.model("BushPullLegs", trainingSchema);
-module.exports = mongoose.model("ArnoldSplit", trainingSchema);
+module.exports = { BroSplit, BushPullLegs, ArnoldSplit };

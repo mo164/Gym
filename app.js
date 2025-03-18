@@ -15,6 +15,7 @@ const mainDiaryRoutes = require("./routes/diaryRoutes.js");
 const bulkRoutes = require("./routes/bulkRoutes.js");
 const cuttingRoutes = require("./routes/cuttingRoutes.js");
 const supplementRoutes = require("./routes/supplementRoutes.js");
+
 const app = express();
 
 app.use(morgan("dev"));

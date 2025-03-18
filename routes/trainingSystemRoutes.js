@@ -3,6 +3,7 @@ const trainingSystemController = require("../controllers/trainingSystemControlle
 const router = express.Router();
 
 router.route('/')
-.get(trainingSystemController.trainingProrammes)
+.post(trainingSystemController.addtrainingProramme)
+.get(trainingSystemController.getAlltrainingProrammes)
 
 module.exports = router;
