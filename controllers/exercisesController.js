@@ -41,22 +41,7 @@ exports.getAllExercisesOnSpecificMuscle = asyncHandler(async (req, res) => {
   });
 });
 
-// exports.addTop10 = asyncHandler(async (req, res) => {
-//   const top10 = await Exercise.create({
-//     name: req.body.name,
-//     targetMuscle: req.body.targetMuscle,
-//     primaryMuscle: req.body.primaryMuscle,
-//     secondaryMuscle: req.body.secondaryMuscle,
-//     instructions: req.body.instructions,
-//     sets: req.body.sets,
-//     reps: req.body.reps,
-//     top10: req.body.top10,
-//   });
-//   res.status(201).json({
-//     message: "created successfully",
-//     top10,
-//   });
-// });
+
 
 exports.getTop10 = asyncHandler(async (req, res) => {
   const top10 = await Exercise.find({ top10: true });

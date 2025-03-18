@@ -6,4 +6,9 @@ router.route('/')
 .post(trainingSystemController.addtrainingProramme)
 .get(trainingSystemController.getAlltrainingProrammes)
 
+router.route('/:id')
+.delete(trainingSystemController.deleteSpecificDay)
+.patch(trainingSystemController.updateTrainingProrammes)
+.get(trainingSystemController.getSpecificDay)
+
 module.exports = router;
