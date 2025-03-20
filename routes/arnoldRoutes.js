@@ -1,5 +1,5 @@
 const express = require("express");
-const arnoldController = require("../controllers/pushPullController");
+const arnoldController = require("../controllers/arnoldSplitController");
 const router = express.Router();
 
 router.route('/')
