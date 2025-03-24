@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
 const globalErrorHandling = require("./utils/globalErrorHandling");
 const appError = require("./utils/appError");
@@ -19,6 +20,7 @@ const pushPullRoutes = require("./routes/pushPullRoutes.js");
 const arnoldRoutes = require("./routes/arnoldRoutes.js");
 const app = express();
 
+app.use(cors());
 app.use(morgan("dev"));
 
 if (process.env.NODE_ENV === "development") {
@@ -44,7 +46,7 @@ app.use("/api/cutting", cuttingRoutes);
 app.use("/api/supplement", supplementRoutes);
 app.use("/api/brosplit", trainingSystemRoutes);
 app.use("/api/pushpull", pushPullRoutes);
-app.use("/api/arnoldsplit",arnoldRoutes)
+app.use("/api/arnoldsplit", arnoldRoutes);
 app.all("*", (req, res, next) => {
   next(new appError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
