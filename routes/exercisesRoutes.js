@@ -1,7 +1,9 @@
 const express = require("express");
 const exercisesController = require("../controllers/exercisesController");
-const router = express.Router({ mergeParams: true });
+const authController = require("../controllers/authController");
 
+const router = express.Router({ mergeParams: true });
+router.use(authController.protect)
 router
   .route("/")
   .post(
