@@ -27,7 +27,7 @@ router
 
 router.patch(
   "/updatemedia/:id",
-  authController.authControllerallowedTo("admin"),
+ authController.allowedTo("admin"),
   muscleGroup.uploadMusclemedia,
   muscleGroup.resizeImage,
   muscleGroup.updateSpecificMuscle
