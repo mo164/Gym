@@ -6,13 +6,16 @@ const router = express.Router();
 router.use(authController.protect);
 router
   .route("/")
-  .post(arnoldController.addtrainingProramme)
+  .post(authController.allowedTo("admin"), arnoldController.addtrainingProramme)
   .get(arnoldController.getAlltrainingProrammes);
 
 router
   .route("/:id")
-  .delete(arnoldController.deleteSpecificDay)
-  .patch(arnoldController.updateTrainingProrammes)
+  .delete(authController.allowedTo("admin"), arnoldController.deleteSpecificDay)
+  .patch(
+    authController.allowedTo("admin"),
+    arnoldController.updateTrainingProrammes
+  )
   .get(arnoldController.getSpecificDay);
 
 module.exports = router;

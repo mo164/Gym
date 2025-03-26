@@ -7,6 +7,7 @@ router.use(authController.protect)
 router
   .route("/")
   .post(
+     authController.allowedTo("admin"),
     exercisesController.addExercises
   )
   .get(exercisesController.getAllExercises);

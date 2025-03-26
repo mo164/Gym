@@ -1,15 +1,16 @@
 const express = require("express");
 const protienController = require("../controllers/mainProtienController");
-const router = express.Router();
+const authController = require("../controllers/authController");
 
-router
-  .route("/")
-  .post(protienController.createMainProtien)
-  .get(protienController.getAllProtiens);
+const router = express.Router();
+router.use(authController.protect);
+
+router.route("/").post.authController.allowedTo("admin"),
+  protienController.createMainProtien.get(protienController.getAllProtiens);
 
 router
   .route("/:id")
   .get(protienController.getSpecificProtien)
-  .patch(protienController.updateProtien)
-  .delete(protienController.deleteProtien);
+  .patch(authController.allowedTo("admin"), protienController.updateProtien)
+  .delete(authController.allowedTo("admin"), protienController.deleteProtien);
 module.exports = router;
