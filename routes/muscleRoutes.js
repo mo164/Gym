@@ -10,12 +10,12 @@ router.route("/").get(muscleGroup.getAllMuscles);
 router
   .route("/:id")
   .get(muscleGroup.getSpecificMuscle)
-  .patch(allowedTo("admin"), muscleGroup.updateSpecificMuscle)
-  .delete(allowedTo("admin"), muscleGroup.deleteSpecificMuscle);
+  .patch(authController.allowedTo("admin"), muscleGroup.updateSpecificMuscle)
+  .delete(authController.allowedTo("admin"), muscleGroup.deleteSpecificMuscle);
 router
   .route("/addMuscle")
   .post(
-    allowedTo("admin"),
+    authController.authControllerallowedTo("admin"),
     muscleGroup.uploadMusclemedia,
     muscleGroup.resizeImage,
     muscleGroup.addMuscleGroup
@@ -27,6 +27,7 @@ router
 
 router.patch(
   "/updatemedia/:id",
+  authController.authControllerallowedTo("admin"),
   muscleGroup.uploadMusclemedia,
   muscleGroup.resizeImage,
   muscleGroup.updateSpecificMuscle
