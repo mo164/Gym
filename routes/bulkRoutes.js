@@ -1,7 +1,9 @@
 const express = require("express");
 const bulkController = require("../controllers/bulkProgramController");
-const router = express.Router();
+const authController = require("../controllers/authController");
 
+const router = express.Router();
+router.use(authController.protect)
 router
   .route("/")
   .post(bulkController.createNutrationProgram)
