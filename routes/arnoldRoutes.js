@@ -2,7 +2,7 @@ const express = require("express");
 const arnoldController = require("../controllers/arnoldSplitController");
 const authController = require("../controllers/authController");
 const router = express.Router();
-router.use()
+router.use(authController.protect)
 router.route('/')
 .post(arnoldController.addtrainingProramme)
 .get(arnoldController.getAlltrainingProrammes)
