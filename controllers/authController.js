@@ -17,6 +17,7 @@ exports.signUp = asyncHandler(async (req, res, next) => {
     phone: req.body.phone,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
+    role: req.body.role
   });
   const token = generateToken(user._id);
   res.status(200).json({
