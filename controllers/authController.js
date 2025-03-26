@@ -63,7 +63,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   }
   if (!token) {
-    return next(new AppErorr("your are not login", 401));
+    return next(new appError("your are not login", 401));
   }
 
   // verify token (changed&expired)
@@ -72,7 +72,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
   // 3) check if the user is still exist
   const currentUser = await User.findById(decoded.userId);
   if (!currentUser) {
-    return next(new AppErorr("user is not exist", 401));
+    return next(new appError("user is not exist", 401));
   }
   // check if the user change the password after the token created
 
@@ -88,12 +88,12 @@ exports.protect = asyncHandler(async (req, res, next) => {
 exports.allowedTo = (...roles) =>
   asyncHandler(async (req, res, next) => {
     if (!req.user) {
-      return next(new AppError("Not authenticated. Please log in", 401));
+      return next(new appError("Not authenticated. Please log in", 401));
     }
 
     if (!roles.includes(req.user.role)) {
       return next(
-        new AppError("You are not allowed to access this route", 403)
+        new appError("You are not allowed to access this route", 403)
       );
     }
 
