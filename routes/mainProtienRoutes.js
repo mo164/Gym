@@ -5,8 +5,10 @@ const authController = require("../controllers/authController");
 const router = express.Router();
 router.use(authController.protect);
 
-router.route("/").post.authController.allowedTo("admin"),
-  protienController.createMainProtien.get(protienController.getAllProtiens);
+router
+  .route("/")
+  .post(authController.allowedTo("admin"), protienController.createMainProtien)
+  .get(protienController.getAllProtiens);
 
 router
   .route("/:id")
