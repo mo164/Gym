@@ -15,7 +15,7 @@ router
 router
   .route("/addMuscle")
   .post(
-    authController.authControllerallowedTo("admin"),
+    authController.allowedTo("admin"),
     muscleGroup.uploadMusclemedia,
     muscleGroup.resizeImage,
     muscleGroup.addMuscleGroup
