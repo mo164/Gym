@@ -5,6 +5,6 @@ const router = express.Router();
 console.log("✅ authRoutes.js loaded");
 router.route("/signup").post(authController.signUp);
 
-router.route("/login").get(authController.login);
+router.route("/login").post(authController.login);
 
 module.exports = router;
