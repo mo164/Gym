@@ -8,7 +8,7 @@ const globalErrorHandling = (err, req, res, next) => {
     sendErrorForDev(err, res);
   } else {
     if (err.name === "JsonWebTokenError") err = handleJsonWebTokenError();
-    if (err.name === 'TokenExpiredError') err = handleJwtExpired();
+    if (err.name === "TokenExpiredError") err = handleJwtExpired();
     sendErrorForProd(err, res);
   }
 };
@@ -17,10 +17,9 @@ const handleJsonWebTokenError = () => {
   return new AppError("Invalid JSON Web Token, please log in again", 401);
 };
 
-const handleJwtExpired = () =>{
-  return new AppError('Expired token, please login again..', 401);
-}
-  
+const handleJwtExpired = () => {
+  return new AppError("Expired token, please login again..", 401);
+};
 
 const sendErrorForDev = (err, res) => {
   return res.status(err.statusCode).json({
@@ -35,8 +34,7 @@ const sendErrorForProd = (err, res) => {
   return res.status(err.statusCode).json({
     status: err.status,
     //message: err.isOperational ? err.message : "Something went wrong!",
-    message:  err.message 
-
+    message: err.message,
   });
 };
 
